@@ -1,0 +1,66 @@
+{
+  "scenarios": 800,
+  "scenario_csv_rows": 800,
+  "drone_csv_rows": 10000,
+  "polygon_names": 100,
+  "scenario_headers": [
+    "scenario",
+    "polygon",
+    "convex_hull",
+    "fleet_size",
+    "area_m2",
+    "d_far_m",
+    "sum_acd_m2",
+    "sum_surface_updated_m2",
+    "not_assigned_m2",
+    "insufficient_ours",
+    "insufficient_dataset"
+  ],
+  "drone_headers": [
+    "scenario",
+    "idx",
+    "model",
+    "surface_updated_m2",
+    "acd_m2",
+    "requirement_m2",
+    "sd_m",
+    "cd_m",
+    "agl_m"
+  ],
+  "geometry_types": {
+    "Polygon": 800
+  },
+  "feature_types": {
+    "Area": 800,
+    "Drone": 10000
+  },
+  "properties": {
+    "type": 800,
+    "model,surface,type": 10000
+  },
+  "models": {
+    "YncH520E": 1800,
+    "DjiPhm4P": 1600,
+    "SkDX10": 1000,
+    "DjiMn4P": 1800,
+    "DjiA3": 1800,
+    "SkDX2E": 1000,
+    "PrtAi": 1000
+  },
+  "invalid_scenarios": 0,
+  "hull_scenarios": 400,
+  "original_scenarios": 400,
+  "max_holes": 4,
+  "fleet_sizes": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "max_surface_csv_geojson_delta_m2": 0.0,
+  "max_csv_area_delta_m2": 1.1175870895385742e-08,
+  "max_closure_delta_m2": 1.1175870895385742e-08,
+  "max_acd_surface_delta_m2": 57804.31987979449,
+  "duplicate_scenario_rows": 0,
+  "duplicate_drone_keys": 0
+}

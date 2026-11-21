@@ -1,0 +1,12 @@
+# Chạy scripts/build_symba_fallback.py trước khi cài (Windows không có C++).
+./references/packages/symba-1.2.1
+./references/npd_source
+pode==0.4.10
+pdan==0.1.9
+gon==5.0.0
+ground==8.3.0
+numpy==2.5.5
+pandas==3.1.1
+shapely==2.2.0
+matplotlib==3.11.2
+pytest==9.2.0
