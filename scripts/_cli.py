@@ -18,7 +18,7 @@ def parser(description):
     p.add_argument('--data-folder', type=Path, default=ROOT / 'data')
     p.add_argument('--output', type=Path, default=ROOT / 'outputs')
     p.add_argument('--algorithm', choices=['all', 'pode', 'npd', 'pdan'], default='npd')
-    p.add_argument('--strategy', choices=['all', 'sequential', 'balanced'], default='balanced')
+    p.add_argument('--strategy', choices=['all', 'sequential', 'balanced', 'karmarkar-karp'], default='balanced')
     p.add_argument('--steiner-points', type=int, default=25)
     p.add_argument('--no-figures', action='store_true')
     p.add_argument('--limit', type=int)
@@ -29,7 +29,7 @@ def parser(description):
 def execute(args, paths):
     rows = []
     algorithms = ['pode', 'npd', 'pdan'] if args.algorithm == 'all' else [args.algorithm]
-    strategies = ['sequential', 'balanced'] if args.strategy == 'all' else [args.strategy]
+    strategies = ['sequential', 'balanced', 'karmarkar-karp'] if args.strategy == 'all' else [args.strategy]
     paths = list(paths)
     if args.limit is not None:
         paths = paths[:args.limit]

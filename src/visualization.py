@@ -69,7 +69,7 @@ def plot_tree(trace, path):
         ax.text(xs[key], -depth, f'{label}\n{row["area_m2"] / 1e6:.3f} km²',
                 ha='center', va='center', fontsize=7,
                 bbox=dict(boxstyle='round,pad=.4', facecolor='#d9eaff' if row['leaf'] else '#f4f4f4'))
-    ax.set_title('Balanced: cây phân vùng (số là index UAV)')
+    ax.set_title('Cây phân vùng (số là index UAV)')
     ax.axis('off')
     ax.margins(.1, .2)
     fig.savefig(path, dpi=150)
