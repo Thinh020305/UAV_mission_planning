@@ -115,6 +115,7 @@ PDAN dùng cả **hình học hull và các dòng CSV của kịch bản hull**.
 | `pdan` | Chia giải tích trên polygon lồi; pipeline dùng bản convex hull |
 | `balanced` | Sắp yêu cầu giảm dần, gom thành hai nhóm có tổng tương đối cân bằng rồi chia đệ quy |
 | `sequential` | Baseline: sắp yêu cầu tăng dần, lần lượt tách từng vùng khỏi phần còn lại |
+| `karmarkar-karp` | Dùng thuật toán differencing Karmarkar-Karp để tạo hai nhóm cân bằng ở mỗi nút rồi chia đệ quy |
 
 Ví dụ Balanced với yêu cầu 10%, 15%, 20%, 25%, 30%: bước đầu tạo nhóm `30+15=45%` và `25+20+10=55%`, rồi tiếp tục chia trong từng nhóm. Balanced cân bằng tổng yêu cầu giữa các nhánh, không ép mọi UAV nhận diện tích bằng nhau.
 
@@ -212,7 +213,7 @@ Lệnh lấy hai kịch bản gốc đầu tiên theo tên đã sắp xếp; PDA
 |---|---|
 | `--scenario PATH` | GeoJSON kịch bản; mặc định của `simulate.py` là Achampet fleet1 |
 | `--algorithm` | `all`, `pode`, `npd`, `pdan`; mặc định `simulate.py`: `all` |
-| `--strategy` | `all`, `balanced`, `sequential`; mặc định `simulate.py`: `balanced` |
+| `--strategy` | `all`, `balanced`, `sequential`, `karmarkar-karp`; mặc định `simulate.py`: `balanced` |
 | `--output PATH` | Thư mục output; mặc định `simulate.py`: `outputs/simulation/` |
 | `--data-folder PATH` | Thư mục chứa hai CSV bước 1; mặc định `data/` của dự án |
 | `--steiner-points N` | Tham số NPD, mặc định 25; thay đổi có thể ảnh hưởng hình dạng và thời gian |

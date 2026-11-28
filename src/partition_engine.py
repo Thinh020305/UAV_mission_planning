@@ -10,6 +10,7 @@ from shapely.ops import unary_union
 from data_loader import load_scenario, geographic_geometry, ROOT
 from balanced_strategy import balanced_partition
 from sequential_strategy import sequential_partition
+from karmarkar_karp_strategy import karmarkar_karp_partition
 from splitters import SPLITTERS
 from metrics import region_metrics
 from validation import validate_partition
@@ -19,13 +20,17 @@ def run_partition(path, algorithm='npd', strategy='balanced', *, data_folder=ROO
                   output=ROOT / 'outputs', steiner_points_count=25, figures=True):
     started = perf_counter()
     algorithm, strategy = algorithm.lower(), strategy.lower()
-    if algorithm not in SPLITTERS or strategy not in ('balanced', 'sequential'):
+    if algorithm not in SPLITTERS or strategy not in ('balanced', 'sequential', 'karmarkar-karp'):
         raise ValueError('Cấu hình không được hỗ trợ')
     sc = load_scenario(path, algorithm, data_folder)
     splitter = SPLITTERS[algorithm](steiner_points_count) if algorithm == 'npd' else SPLITTERS[algorithm]()
     trace = []
     partition_started = perf_counter()
-    partition = balanced_partition if strategy == 'balanced' else sequential_partition
+    partition = {
+        'balanced': balanced_partition,
+        'sequential': sequential_partition,
+        'karmarkar-karp': karmarkar_karp_partition,
+    }[strategy]
     regions = partition(sc.domain, sc.requirements, splitter, trace)
     partition_runtime = perf_counter() - partition_started
     validation = validate_partition(sc.domain, regions, dict(sc.requirements),
@@ -98,6 +103,6 @@ def run_partition(path, algorithm='npd', strategy='balanced', *, data_folder=ROO
     if figures:
         from visualization import plot_partition, plot_tree
         plot_partition(sc, regions, f'{Path(sc.name).stem}\n{algorithm.upper()} / {strategy.title()}', output / 'figures' / f'{stem}.png')
-        if strategy == 'balanced':
+        if strategy in ('balanced', 'karmarkar-karp'):
             plot_tree(trace, output / 'figures' / f'{stem}__tree.png')
     return report
